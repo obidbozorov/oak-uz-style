@@ -74,15 +74,15 @@
   <macro name="access">
     <choose>
       <if variable="URL">
-        <text value="[Elektron manbaa]: "/>
+        <text value="[Sayt]: "/>
         <text variable="URL"/>
         <choose>
           <if variable="accessed">
             <group prefix=" (" suffix=")">
-              <text value="murojaat vaqti: "/>
+              <text value="Murojaat vaqti: "/>
               <date variable="accessed">
-                <date-part name="day" suffix="."/>
-                <date-part name="month" form="numeric" suffix="."/>
+                <date-part name="day" form="numeric-leading-zeros" suffix="."/>
+                <date-part name="month" form="numeric-leading-zeros" suffix="."/>
                 <date-part name="year"/>
               </date>
             </group>
@@ -156,4 +156,3 @@
     </layout>
   </bibliography>
 </style>
-
