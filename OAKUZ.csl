@@ -74,19 +74,26 @@
   <macro name="access">
     <choose>
       <if variable="URL">
-        <text value="[Elektron manbaa]: "/>
-        <text variable="URL"/>
         <choose>
-          <if variable="accessed">
-            <group prefix=" (" suffix=")">
-              <text value="Murojaat vaqti: "/>
-              <date variable="accessed">
-                <date-part name="day" form="numeric-leading-zeros" suffix="."/>
-                <date-part name="month" form="numeric-leading-zeros" suffix="."/>
-                <date-part name="year"/>
-              </date>
-            </group>
+          <if type="webpage post-weblog bill legislation legal_case" match="any">
+            <text value="[Elektron manba]: "/>
+            <text variable="URL"/>
+            <choose>
+              <if variable="accessed">
+                <group prefix=" (" suffix=")">
+                  <text value="Murojaat vaqti: "/>
+                  <date variable="accessed">
+                    <date-part name="day" form="numeric-leading-zeros" suffix="."/>
+                    <date-part name="month" form="numeric-leading-zeros" suffix="."/>
+                    <date-part name="year"/>
+                  </date>
+                </group>
+              </if>
+            </choose>
           </if>
+          <else>
+            <text variable="URL"/>
+          </else>
         </choose>
       </if>
     </choose>
@@ -156,4 +163,3 @@
     </layout>
   </bibliography>
 </style>
-
