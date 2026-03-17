@@ -170,8 +170,16 @@
     <sort>
       <key variable="citation-number"/>
     </sort>
-    <layout prefix="[" suffix="]" delimiter=", ">
+    <layout prefix="[" suffix="]" delimiter="; ">
       <text variable="citation-number"/>
+      <choose>
+        <if variable="locator">
+          <group prefix="; ">
+            <text variable="locator"/>
+            <text value=" b."/>
+          </group>
+        </if>
+      </choose>
     </layout>
   </citation>
 
