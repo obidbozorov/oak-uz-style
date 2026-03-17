@@ -10,7 +10,7 @@
     </author>
     <category citation-format="numeric"/>
     <category field="generic-base"/>
-    <summary>OAK dissertatsiyalari uchun GOST 7.1-2003 asosida adabiyotlar uslubi</summary>
+    <summary>OAK dissertatsiyalari uchun GOST 7.1-2003 asosida</summary>
     <updated>2026-03-17T12:00:00+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/"/>
   </info>
@@ -25,27 +25,25 @@
       <term name="and">va</term>
       <term name="et-al">va boshq.</term>
       <term name="editor" form="short">tahr.</term>
-      <term name="translator" form="short">tarj.</term>
       <term name="edition">nashr</term>
       <term name="volume" form="short">T.</term>
-      <term name="issue" form="short">№</term>
+      <term name="issue" form="short">&#x2116;</term>
     </terms>
   </locale>
 
   <locale xml:lang="ru">
     <terms>
-      <term name="page" form="short">С.</term>
-      <term name="number-of-pages" form="short">с.</term>
-      <term name="accessed">дата обращения</term>
-      <term name="online">Электронный ресурс</term>
-      <term name="no date">б.г.</term>
-      <term name="and">и</term>
-      <term name="et-al">и др.</term>
-      <term name="editor" form="short">ред.</term>
-      <term name="translator" form="short">пер.</term>
-      <term name="edition">изд.</term>
-      <term name="volume" form="short">Т.</term>
-      <term name="issue" form="short">№</term>
+      <term name="page" form="short">&#x421;.</term>
+      <term name="number-of-pages" form="short">&#x441;.</term>
+      <term name="accessed">&#x434;&#x430;&#x442;&#x430; &#x43E;&#x431;&#x440;&#x430;&#x449;&#x435;&#x43D;&#x438;&#x44F;</term>
+      <term name="online">&#x42D;&#x43B;&#x435;&#x43A;&#x442;&#x440;&#x43E;&#x43D;&#x43D;&#x44B;&#x439; &#x440;&#x435;&#x441;&#x443;&#x440;&#x441;</term>
+      <term name="no date">&#x431;.&#x433;.</term>
+      <term name="and">&#x438;</term>
+      <term name="et-al">&#x438; &#x434;&#x440;.</term>
+      <term name="editor" form="short">&#x440;&#x435;&#x434;.</term>
+      <term name="edition">&#x438;&#x437;&#x434;.</term>
+      <term name="volume" form="short">&#x422;.</term>
+      <term name="issue" form="short">&#x2116;</term>
     </terms>
   </locale>
 
@@ -57,7 +55,6 @@
       <term name="online">Online resource</term>
       <term name="et-al">et al.</term>
       <term name="editor" form="short">ed.</term>
-      <term name="translator" form="short">trans.</term>
       <term name="volume" form="short">Vol.</term>
       <term name="issue" form="short">No.</term>
     </terms>
@@ -77,7 +74,7 @@
   <macro name="editor">
     <names variable="editor">
       <label form="short" suffix=" "/>
-      <name name-as-sort-order="all" sort-separator=" " initialize-with="." delimiter=", " delimiter-precedes-last="always"/>
+      <name name-as-sort-order="all" sort-separator=" " initialize-with="." delimiter=", "/>
     </names>
   </macro>
 
@@ -117,27 +114,21 @@
   </macro>
 
   <macro name="volume-issue">
-    <group>
-      <choose>
-        <if variable="volume">
-          <group>
-            <text term="issue" form="short" suffix=" "/>
-            <text variable="volume"/>
-            <choose>
-              <if variable="issue">
-                <text variable="issue" prefix=" (" suffix=")"/>
-              </if>
-            </choose>
-          </group>
-        </if>
-        <else-if variable="issue">
-          <group>
-            <text term="issue" form="short" suffix=" "/>
-            <text variable="issue"/>
-          </group>
-        </else-if>
-      </choose>
-    </group>
+    <choose>
+      <if variable="volume">
+        <group>
+          <text term="issue" form="short" suffix=" "/>
+          <text variable="volume"/>
+          <text variable="issue" prefix=" (" suffix=")"/>
+        </group>
+      </if>
+      <else-if variable="issue">
+        <group>
+          <text term="issue" form="short" suffix=" "/>
+          <text variable="issue"/>
+        </group>
+      </else-if>
+    </choose>
   </macro>
 
   <macro name="pages">
@@ -145,7 +136,7 @@
       <if type="article-journal article-magazine article-newspaper chapter paper-conference" match="any">
         <choose>
           <if variable="page">
-            <group prefix="– " delimiter="">
+            <group prefix="&#x2013; ">
               <label variable="page" form="short"/>
               <text variable="page"/>
             </group>
@@ -155,7 +146,7 @@
       <else>
         <choose>
           <if variable="number-of-pages">
-            <group prefix="– ">
+            <group prefix="&#x2013; ">
               <text variable="number-of-pages"/>
               <text value=" "/>
               <label variable="page" form="short"/>
@@ -198,7 +189,6 @@
     </choose>
   </macro>
 
-  <!-- ======================== CITATION ======================== -->
   <citation collapse="citation-number">
     <sort>
       <key variable="citation-number"/>
@@ -216,8 +206,7 @@
     </layout>
   </citation>
 
-  <!-- ======================== BIBLIOGRAPHY ======================== -->
-  <bibliography entry-spacing="0" second-field-align="flush" hanging-indent="true">
+  <bibliography entry-spacing="0" second-field-align="flush" hanging-indent="true" line-spacing="2">
     <sort>
       <key variable="citation-number"/>
     </sort>
@@ -225,36 +214,36 @@
       <text variable="citation-number" suffix=". "/>
 
       <choose>
-        <!-- KITOB: Muallif. Sarlavha. – Joy: Nashriyot, yil. – XXX b. -->
+        <!-- KITOB -->
         <if type="book">
           <text macro="author" suffix=". "/>
-          <text macro="title" suffix=". "/>
-          <text macro="edition" suffix=". "/>
-          <group delimiter=", " prefix="– " suffix=". ">
+          <text macro="title"/>
+          <text macro="edition" prefix=". "/>
+          <group delimiter=", " prefix=". &#x2013; " suffix=".">
             <text macro="publisher"/>
             <text macro="year-date"/>
           </group>
-          <text macro="pages"/>
+          <text macro="pages" prefix=" "/>
           <text macro="access" prefix=". "/>
         </if>
 
-        <!-- JURNAL: Muallif. Sarlavha // Jurnal. – Yil. – № X (Y). – S.XX-XX. -->
+        <!-- JURNAL MAQOLASI -->
         <else-if type="article-journal article-magazine">
           <text macro="author" suffix=". "/>
           <text macro="title"/>
-          <text variable="container-title" prefix=" // " suffix=". "/>
-          <text macro="year-date" prefix="– " suffix=". "/>
-          <text macro="volume-issue" prefix="– " suffix=". "/>
-          <text macro="pages"/>
+          <text variable="container-title" prefix=" // "/>
+          <text macro="year-date" prefix=". &#x2013; " suffix="."/>
+          <text macro="volume-issue" prefix=" &#x2013; " suffix="."/>
+          <text macro="pages" prefix=" "/>
           <text macro="access" prefix=". "/>
         </else-if>
 
-        <!-- GAZETA: Muallif. Sarlavha // Gazeta. – Sana. -->
+        <!-- GAZETA -->
         <else-if type="article-newspaper">
           <text macro="author" suffix=". "/>
           <text macro="title"/>
-          <text variable="container-title" prefix=" // " suffix=". "/>
-          <group prefix="– ">
+          <text variable="container-title" prefix=" // "/>
+          <group prefix=". &#x2013; ">
             <date variable="issued">
               <date-part name="day" suffix=" "/>
               <date-part name="month" form="long" suffix=" "/>
@@ -265,20 +254,20 @@
           <text macro="access" prefix=". "/>
         </else-if>
 
-        <!-- KONFERENSIYA: Muallif. Sarlavha // Konferensiya nomi. – Joy, Yil. – S.XX-XX. -->
+        <!-- KONFERENSIYA -->
         <else-if type="paper-conference">
           <text macro="author" suffix=". "/>
           <text macro="title"/>
-          <text variable="container-title" prefix=" // " suffix=". "/>
-          <group delimiter=", " prefix="– " suffix=". ">
+          <text variable="container-title" prefix=" // "/>
+          <group delimiter=", " prefix=". &#x2013; " suffix=".">
             <text macro="publisher"/>
             <text macro="year-date"/>
           </group>
-          <text macro="pages"/>
+          <text macro="pages" prefix=" "/>
           <text macro="access" prefix=". "/>
         </else-if>
 
-        <!-- BOB: Muallif. Sarlavha // Kitob / tahr. X. – Joy, Yil. – S.XX-XX. -->
+        <!-- BOB -->
         <else-if type="chapter">
           <text macro="author" suffix=". "/>
           <text macro="title"/>
@@ -286,62 +275,62 @@
             <text variable="container-title"/>
             <text macro="editor" prefix=" / "/>
           </group>
-          <group delimiter=", " prefix=". – " suffix=". ">
+          <group delimiter=", " prefix=". &#x2013; " suffix=".">
             <text macro="publisher"/>
             <text macro="year-date"/>
           </group>
-          <text macro="pages"/>
+          <text macro="pages" prefix=" "/>
           <text macro="access" prefix=". "/>
         </else-if>
 
-        <!-- DISSERTATSIYA: Muallif. Sarlavha: diss. ... – Joy, Yil. – XXX b. -->
+        <!-- DISSERTATSIYA -->
         <else-if type="thesis">
           <text macro="author" suffix=". "/>
-          <text macro="title" suffix=": "/>
-          <text variable="genre" suffix=". "/>
-          <group delimiter=", " prefix="– " suffix=". ">
+          <text macro="title"/>
+          <text variable="genre" prefix=": "/>
+          <group delimiter=", " prefix=". &#x2013; " suffix=".">
             <text macro="publisher"/>
             <text macro="year-date"/>
           </group>
-          <text macro="pages"/>
+          <text macro="pages" prefix=" "/>
         </else-if>
 
         <!-- HISOBOT -->
         <else-if type="report">
           <text macro="author" suffix=". "/>
-          <text macro="title" suffix=". "/>
-          <text variable="genre" suffix=". "/>
-          <text variable="number" prefix="№ " suffix=". "/>
-          <group delimiter=", " prefix="– " suffix=". ">
+          <text macro="title"/>
+          <text variable="genre" prefix=". "/>
+          <text variable="number" prefix=". &#x2116; "/>
+          <group delimiter=", " prefix=". &#x2013; " suffix=".">
             <text macro="publisher"/>
             <text macro="year-date"/>
           </group>
-          <text macro="pages"/>
+          <text macro="pages" prefix=" "/>
           <text macro="access" prefix=". "/>
         </else-if>
 
         <!-- QONUN, FARMON -->
         <else-if type="legislation bill legal_case" match="any">
-          <text macro="title" suffix=". "/>
-          <text macro="year-date" suffix=". "/>
-          <text macro="access"/>
+          <text macro="title"/>
+          <text macro="year-date" prefix=". "/>
+          <text macro="access" prefix=". "/>
         </else-if>
 
         <!-- VEB-SAHIFA -->
         <else-if type="webpage post-weblog" match="any">
           <text macro="author" suffix=". "/>
-          <text macro="title" suffix=". "/>
-          <text macro="year-date" suffix=". "/>
-          <text macro="access"/>
+          <text macro="title"/>
+          <text macro="year-date" prefix=". "/>
+          <text macro="access" prefix=". "/>
         </else-if>
 
         <!-- PATENT -->
         <else-if type="patent">
           <text macro="author" suffix=". "/>
-          <text macro="title" suffix=". "/>
-          <text variable="authority" suffix=". "/>
-          <text variable="number" suffix=". "/>
-          <group prefix="– ">
+          <text macro="title"/>
+          <text variable="authority" prefix=". "/>
+          <text variable="number" prefix=". "/>
+          <group prefix=". &#x2013; ">
             <date variable="issued">
               <date-part name="day" suffix="."/>
               <date-part name="month" form="numeric-leading-zeros" suffix="."/>
@@ -352,12 +341,12 @@
 
         <!-- STANDART -->
         <else-if type="standard" match="any">
-          <text macro="title" suffix=". "/>
-          <group delimiter=", " prefix="– " suffix=". ">
+          <text macro="title"/>
+          <group delimiter=", " prefix=". &#x2013; " suffix=".">
             <text macro="publisher"/>
             <text macro="year-date"/>
           </group>
-          <text macro="pages"/>
+          <text macro="pages" prefix=" "/>
           <text macro="access" prefix=". "/>
         </else-if>
 
@@ -367,17 +356,14 @@
           <text macro="title"/>
           <choose>
             <if variable="container-title">
-              <text variable="container-title" prefix=" // " suffix=". "/>
+              <text variable="container-title" prefix=" // "/>
             </if>
-            <else>
-              <text value=". "/>
-            </else>
           </choose>
-          <group delimiter=", " prefix="– " suffix=". ">
+          <group delimiter=", " prefix=". &#x2013; " suffix=".">
             <text macro="publisher"/>
             <text macro="year-date"/>
           </group>
-          <text macro="pages"/>
+          <text macro="pages" prefix=" "/>
           <text macro="access" prefix=". "/>
         </else>
       </choose>
